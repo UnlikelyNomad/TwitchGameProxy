@@ -1,3 +1,5 @@
 TwitchGameProxy is a combination of a WebSocket wrapper for frontend Twitch Extensions along with a NodeJS backend server. Together they provide a means for authenticating Twitch users and provide websocket message proxying to a broadcaster run game server.
 
 [Extension] <---WebSocket---> [NodeJS EBS] <---WebSocket---> [Game Server]
+
+The Extension (Client) code receives the authorization token from Twitch. This token can be passed back to the NodeJS EBS to verify the Twitch user id and allow them to be connected to the game server. The NodeJS EBS (EBS) serves as a common endpoint for both viewers and the game server. It provides websocket message routing between the players and the game server once everyones identity has been verified. The game server is a completely separate entity that also connects to the EBS over a websocket connection to provide actual game logic for players.
